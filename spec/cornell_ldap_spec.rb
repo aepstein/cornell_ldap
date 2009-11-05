@@ -59,6 +59,18 @@ describe "CornellLdap" do
     end
   end
 
+  it "should call address_attributes to return local address" do
+    person = mock_person
+    CornellLdap::Record.should_receive(:address_attributes).once.with(person.cornelledulocaladdress)
+    person.local_address
+  end
+
+  it "should call address_attributes to return home address" do
+    person = mock_person
+    CornellLdap::Record.should_receive(:address_attributes).once.with(person.homePostalAddress)
+    person.home_address
+  end
+
   def mock_person
     person = CornellLdap::Record.new
     person.attributes={

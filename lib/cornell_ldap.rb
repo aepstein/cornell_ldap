@@ -40,7 +40,7 @@ module CornellLdap
 
     # Returns has representation of on campus address for person if one is
     # reported.
-    # See CornellLdap::Record#make_address_attributes for more information.
+    # See CornellLdap::Record#address_attributes for more information.
     def campus_address
       unless @campus_address.nil?
         return @campus_address
@@ -52,24 +52,24 @@ module CornellLdap
     end
 
     # Returns local area (Ithaca area) address for person if one is reported
-    # See CornellLdap::Record#make_address_attributes for more information.
+    # See CornellLdap::Record#address_attributes for more information.
     def local_address
       unless @local_address.nil?
         return @local_address
       end
       @local_address = false unless attribute_present?('cornelledulocaladdress') &&
-        @local_address = Record.make_address_attributes(cornelledulocaladdress)
+        @local_address = Record.address_attributes(cornelledulocaladdress)
       return local_address
     end
 
     # Returns home address for person if one is reported
-    # See CornellLdap::Record#make_address_attributes for more information.
+    # See CornellLdap::Record#address_attributes for more information.
     def home_address
       unless @home_address.nil?
         return @home_address
       end
       @home_address = false unless attribute_present?('homePostalAddress') &&
-        @home_address = Record.make_address_attributes(homePostalAddress)
+        @home_address = Record.address_attributes(homePostalAddress)
       return home_address
     end
 
