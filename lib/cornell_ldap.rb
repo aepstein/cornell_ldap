@@ -46,7 +46,7 @@ module CornellLdap
         return @campus_address
       end
       @campus_address = false unless attribute_present?('cornelleducampusaddress') &&
-        @campus_address = { :street => cornelleducampusaddress,
+        @campus_address = { :street => cornelleducampusaddress.strip,
                             :on_campus => true }
       return campus_address
     end

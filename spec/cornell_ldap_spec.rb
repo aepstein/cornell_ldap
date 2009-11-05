@@ -71,12 +71,17 @@ describe "CornellLdap" do
     person.home_address
   end
 
+  it "should strip whitespace from campus address" do
+    person = mock_person
+    person.campus_address[:street].should eql '-100 Day Hall'
+  end
+
   def mock_person
     person = CornellLdap::Record.new
     person.attributes={
       'type' => 'staff',
       'cornelleduacadcollege' => 'AS',
-      'cornelleducampusaddress' => '-100 Day Hall',
+      'cornelleducampusaddress' => '-100 Day Hall     ',
       'cornelledulocaladdress' => '1 Main St., Apt. 1, Ithaca, NY, 14850',
       'homePostalAddress' => '1 Broadway, New York, NY, 00000',
       'givenName' => 'John',
