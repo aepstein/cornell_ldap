@@ -5,8 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "cornell_ldap"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{Toolkit for accessing information about people through the Cornell University LDAP directory.}
+    gem.description = %Q{Using ActiveLdap, this library provides an easy interface for communicating with the Cornell University LDAP directory.  Use of this directory is restricted to purposes authorized by the university.}
     gem.email = "aepstein607@gmail.com"
     gem.homepage = "http://github.com/aepstein/cornell_ldap"
     gem.authors = ["Ari Epstein"]

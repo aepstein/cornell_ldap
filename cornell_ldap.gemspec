@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{cornell_ldap}
-  s.version = "0.0.0"
+  s.version = "1.0.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ari Epstein"]
   s.date = %q{2009-11-05}
-  s.description = %q{TODO: longer description of your gem}
+  s.description = %q{Using ActiveLdap, this library provides an easy interface for communicating with the Cornell University LDAP directory.  Use of this directory is restricted to purposes authorized by the university.}
   s.email = %q{aepstein607@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "cornell_ldap.gemspec",
      "lib/cornell_ldap.rb",
      "spec/cornell_ldap_spec.rb",
      "spec/spec.opts",
@@ -32,7 +33,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.5}
-  s.summary = %q{TODO: one-line summary of your gem}
+  s.summary = %q{Toolkit for accessing information about people through the Cornell University LDAP directory.}
   s.test_files = [
     "spec/cornell_ldap_spec.rb",
      "spec/spec_helper.rb"
