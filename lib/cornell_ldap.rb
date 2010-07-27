@@ -20,12 +20,16 @@ module CornellLdap
     CONNECTION_PARAMETERS = [ :port, :host, :auth ]
 
     def self.setup_connection( params )
-      @@connection_params = params
-      con = {}
-      CONNECTION_PARAMETERS.each do |setting|
-        con[setting] = @@connection_params[setting] if params.key? setting
+      @@connection_params = params.inject({}) do |memo, (k, v)|
+        memo[k.to_sym] = v
+        memo
       end
-      @@connection = Net::LDAP.new( con )
+      @@connection = Net::LDAP.new(
+        @@connection_params.inject({}) do |memo, (k, v)|
+          memo[k] = v if CONNECTION_PARAMETERS.include? k
+          memo
+        end
+      )
     end
 
     def self.connection
