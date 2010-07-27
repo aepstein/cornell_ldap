@@ -2,9 +2,8 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 require 'cornell_ldap'
 
-ActiveLdap::Base.setup_connection :host => 'directory.cornell.edu',
-                                  :port => 389,
-                                  :base => 'o=Cornell University,c=US'
+CornellLdap::Record.setup_connection :host => 'directory.cornell.edu',
+  :port => 389, :base => 'o=Cornell University,c=US'
 
 
 describe "CornellLdap" do
@@ -18,7 +17,7 @@ describe "CornellLdap" do
       ['student', 'GR', nil, nil, 'grad'],
       ['alumni', nil, nil, nil, 'alumni'],
       ['temp', nil, nil, nil, 'temporary'],
-      ['blah', nil, nil, nil, 'unknown']
+      ['blah', nil, nil, nil, false]
     ]
   end
 
@@ -27,13 +26,12 @@ describe "CornellLdap" do
 
   it "should correctly guess the status of several types" do
     @map.each do |scenario|
-      person = mock_person
-      person.attributes={
-        'type' => scenario[0],
-        'cornelleduacadcollege' => scenario[1],
-        'cornelleduwrkngtitle1' => scenario[2],
-        'cornelleduwrkngtitle2' => scenario[3]
-      }
+      person = mock_person( {
+        :cornelledutype => [scenario[0]],
+        :cornelleduacadcollege => [scenario[1]],
+        :cornelleduwrkngtitle1 => [scenario[2]],
+        :cornelleduwrkngtitle2 => [scenario[3]]
+      } )
       person.status.should eql scenario[4]
       person
     end
@@ -61,13 +59,13 @@ describe "CornellLdap" do
 
   it "should call address_attributes to return local address" do
     person = mock_person
-    CornellLdap::Record.should_receive(:address_attributes).once.with(person.cornelledulocaladdress)
+    CornellLdap::Record.should_receive(:address_attributes).once.with(person.attributes[:local_address])
     person.local_address
   end
 
   it "should call address_attributes to return home address" do
     person = mock_person
-    CornellLdap::Record.should_receive(:address_attributes).once.with(person.homePostalAddress)
+    CornellLdap::Record.should_receive(:address_attributes).once.with(person.attributes[:home_address])
     person.home_address
   end
 
@@ -76,19 +74,17 @@ describe "CornellLdap" do
     person.campus_address[:street].should eql '-100 Day Hall'
   end
 
-  def mock_person
-    person = CornellLdap::Record.new
-    person.attributes={
-      'type' => 'staff',
-      'cornelleduacadcollege' => 'AS',
-      'cornelleducampusaddress' => '-100 Day Hall     ',
-      'cornelledulocaladdress' => '1 Main St., Apt. 1, Ithaca, NY, 14850',
-      'homePostalAddress' => '1 Broadway, New York, NY, 00000',
-      'givenName' => 'John',
-      'cornelledumiddlename' => 'A',
-      'sn' => 'Doe'
-    }
-    person
+  def mock_person(values = {})
+    CornellLdap::Record.new( {
+      :cornelledutype => ['staff'],
+      :cornelleduacadcollege => ['AS'],
+      :cornelleducampusaddress => ['-100 Day Hall     '],
+      :cornelledulocaladdress => ['1 Main St., Apt. 1, Ithaca, NY, 14850'],
+      :homepostaladdress => ['1 Broadway, New York, NY, 00000'],
+      :givenname => ['John'],
+      :cornelledumiddlename => ['A'],
+      :sn => ['Doe']
+    }.merge(values) )
   end
 end
 

@@ -11,7 +11,7 @@ begin
     gem.homepage = "http://github.com/aepstein/cornell_ldap"
     gem.authors = ["Ari Epstein"]
     gem.add_development_dependency "rspec", ">= 1.2.9"
-    gem.add_dependency "activeldap", ">= 1.2.0"
+    gem.add_dependency "net-ldap", '>= 0.1.1'
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
