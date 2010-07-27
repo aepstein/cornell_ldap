@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{cornell_ldap}
-  s.version = "1.2.0"
+  s.version = "1.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ari Epstein"]
-  s.date = %q{2009-11-05}
+  s.date = %q{2010-07-27}
   s.description = %q{Using ActiveLdap, this library provides an easy interface for communicating with the Cornell University LDAP directory.  Use of this directory is restricted to purposes authorized by the university.}
   s.email = %q{aepstein607@gmail.com}
   s.extra_rdoc_files = [
@@ -32,11 +32,11 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/aepstein/cornell_ldap}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.6}
   s.summary = %q{Toolkit for accessing information about people through the Cornell University LDAP directory.}
   s.test_files = [
-    "spec/cornell_ldap_spec.rb",
-     "spec/spec_helper.rb"
+    "spec/spec_helper.rb",
+     "spec/cornell_ldap_spec.rb"
   ]
 
   if s.respond_to? :specification_version then
@@ -45,14 +45,14 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<rspec>, [">= 1.2.9"])
-      s.add_runtime_dependency(%q<activeldap>, [">= 1.2.0"])
+      s.add_runtime_dependency(%q<net-ldap>, [">= 0.1.1"])
     else
       s.add_dependency(%q<rspec>, [">= 1.2.9"])
-      s.add_dependency(%q<activeldap>, [">= 1.2.0"])
+      s.add_dependency(%q<net-ldap>, [">= 0.1.1"])
     end
   else
     s.add_dependency(%q<rspec>, [">= 1.2.9"])
-    s.add_dependency(%q<activeldap>, [">= 1.2.0"])
+    s.add_dependency(%q<net-ldap>, [">= 0.1.1"])
   end
 end
 
