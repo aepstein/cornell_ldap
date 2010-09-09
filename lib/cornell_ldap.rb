@@ -97,7 +97,7 @@ module CornellLdap
             'staff'
           end
         when /^student/ then case attributes[:college]
-          when 'AS', 'AR', 'AG', 'IL', 'HE', 'EN', 'UN' then 'undergrad'
+          when 'AS', 'AR', 'AG', 'IL', 'HE', 'HA', 'EN', 'UN' then 'undergrad'
           else 'grad'
         end
         when /^alumni/ then 'alumni'
