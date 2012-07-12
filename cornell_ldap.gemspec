@@ -17,6 +17,11 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
+  s.rubygems_version = %q{1.3.7}
+  s.test_files = [
+    "spec/cornell_ldap_spec.rb",
+     "spec/spec_helper.rb"
+  ]
 
   s.add_development_dependency 'rspec'
   s.add_dependency 'net-ldap'
