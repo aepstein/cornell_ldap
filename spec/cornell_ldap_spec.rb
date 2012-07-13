@@ -78,6 +78,7 @@ describe "CornellLdap" do
     person.campus_phone.should eql '6075551212'
     person.local_phone.should eql '6075551212'
     person.home_phone.should eql '6075551212'
+    person.mobile_phone.should eql '6075551212'
   end
 
   def mock_person(values = {})
@@ -92,7 +93,8 @@ describe "CornellLdap" do
       :sn => ['Doe'],
       :cornelleducampusphone => ['607+555-1212'],
       :homephone => ['607-555*1212'],
-      :cornelledulocalphone => ['607-555 1212']
+      :cornelledulocalphone => ['607-555 1212'],
+      :mobile => ['607 555 1212']
     }.merge(values) )
   end
 end

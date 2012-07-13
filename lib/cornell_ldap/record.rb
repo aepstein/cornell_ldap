@@ -17,7 +17,8 @@ module CornellLdap
       :sn                      => :last_name,
       :cornelleducampusphone   => :campus_phone,
       :homephone               => :home_phone,
-      :cornelledulocalphone    => :local_phone
+      :cornelledulocalphone    => :local_phone,
+      :mobile                  => :mobile_phone
     }
 
     CONNECTION_PARAMETERS = [ :port, :host, :auth ]
@@ -161,6 +162,7 @@ module CornellLdap
     def campus_phone; Record.sanitize_phone attributes[:campus_phone]; end
     def local_phone; Record.sanitize_phone attributes[:local_phone]; end
     def home_phone; Record.sanitize_phone attributes[:home_phone]; end
+    def mobile_phone; Record.sanitize_phone attributes[:mobile_phone]; end
   end
 end
 
